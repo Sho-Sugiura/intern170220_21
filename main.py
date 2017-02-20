@@ -33,7 +33,7 @@ def readCSVbyPd(readFileName, writeFileName):
     df['revol_util'] = df['revol_util'].map(lambda x: x[0:len(x) - 1] if str(x).find('%') > -1 else x)
 
     # 不要な列の削除
-    # [実験1]除去する変数（0.0005以下）
+    # ---実験1---> 除去する変数（0.0005以下）
     # 除去方針：地域系は、１地域当たりのサンプル数が少ないため、排除
     del df['zip_code']                 #0.00000 <（米国の）郵便番号の先頭３桁>
     # 除去方針：職業系は、１職業当たりのサンプル数が少ないため、排除
@@ -52,7 +52,7 @@ def readCSVbyPd(readFileName, writeFileName):
     del df['num_op_rev_tl']            #0.00037 <オープンリボルビングアカウントの数>
     del df['pub_rec_bankruptcies']     #0.0003  <公的な倒産件数>
 
-    # [実験2]除去する変数(0.005以下)
+    # ---実験2---> 除去する変数（0.005以下）
     # 除去方針：地域系は、１地域当たりのサンプル数が少ないため、排除
     del df['addr_state']               #0.00186  <（米国の）州>
     # 除去方針：職業系は、１職業当たりのサンプル数が少ないため、排除
@@ -116,9 +116,9 @@ def readCSVbyPd(readFileName, writeFileName):
     # bc_open_to_buy（リボ銀行カードでの購入可能最大額）
     # grade（ローングレード）
     # int_rate（ローンの金利）
-    #
+    # sub_grade（ローンの副次グレード）
 
-    # [実験3]除去する変数(0.01以下)
+    # ---実験3---> 手動による調整
     #
 
     df.to_csv(writeFileName, index=None)
